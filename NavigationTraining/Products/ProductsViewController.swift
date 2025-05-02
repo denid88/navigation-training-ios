@@ -1,13 +1,24 @@
 import UIKit
 
 class ProductsViewController: UIViewController {
+    private let uiLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Products View"
+        label.textColor = .black
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemPink.withAlphaComponent(0.8)
+        view.addSubview(uiLabel)
+        setupUI()
         
         if isPresentedModally {
             setupCloseButton()
         }
+        
+        addBackButtonIfNeeded()
     }
     
     private func setupCloseButton() {
@@ -21,6 +32,14 @@ class ProductsViewController: UIViewController {
         NSLayoutConstraint.activate([
             closeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             closeButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+    
+    private func setupUI() {
+        uiLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            uiLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            uiLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
     
