@@ -3,29 +3,23 @@ import UIKit
 class SettingsViewController: UIViewController {
     private lazy var pushViewControllerButton: UIButton = self.createUIButton("Push View Controlller")
     private lazy var pushTwoViewsControllerButton: UIButton = self.createUIButton("Push Two View Controlller")
+    private lazy var pushFourViewsControllerButton: UIButton = self.createUIButton("Push Four View Controlller")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPurple.withAlphaComponent(0.1)
+        view.backgroundColor = .blue
         view.addSubview(pushViewControllerButton)
         view.addSubview(pushTwoViewsControllerButton)
+        view.addSubview(pushFourViewsControllerButton)
         setupUI()
     }
 }
 
 extension SettingsViewController {
-    private func createUIButton(_ title: String) -> UIButton {
-        let uiButton = UIButton()
-        uiButton.configuration = .filled()
-        uiButton.configuration?.title = title
-        uiButton.configuration?.baseForegroundColor = .white
-        uiButton.configuration?.baseBackgroundColor = .black
-        return uiButton
-    }
-    
     private func setupUI() {
         pushViewControllerButton.translatesAutoresizingMaskIntoConstraints = false
         pushTwoViewsControllerButton.translatesAutoresizingMaskIntoConstraints = false
+        pushFourViewsControllerButton.translatesAutoresizingMaskIntoConstraints = false
         
         let padding: CGFloat = 40.0
         
@@ -39,10 +33,16 @@ extension SettingsViewController {
             pushTwoViewsControllerButton.centerYAnchor.constraint(equalTo: pushViewControllerButton.bottomAnchor, constant: padding),
             pushTwoViewsControllerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
             pushTwoViewsControllerButton.heightAnchor.constraint(equalToConstant: 50.0),
+            
+            pushFourViewsControllerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pushFourViewsControllerButton.centerYAnchor.constraint(equalTo: pushTwoViewsControllerButton.bottomAnchor, constant: padding),
+            pushFourViewsControllerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+            pushFourViewsControllerButton.heightAnchor.constraint(equalToConstant: 50.0),
         ])
         
         pushViewControllerButton.addTarget(self, action: #selector(movePushView), for: .touchUpInside)
         pushTwoViewsControllerButton.addTarget(self, action: #selector(movePushTwoViews), for: .touchUpInside)
+        pushFourViewsControllerButton.addTarget(self, action: #selector(movePushFourViews), for: .touchUpInside)
     }
     
     @objc func movePushView() {
@@ -56,13 +56,15 @@ extension SettingsViewController {
         let productVC = ProductViewController()
         productsVC.hidesBottomBarWhenPushed = true
         navigationController?.setViewControllers([self, productsVC, productVC], animated: true)
+    }
+    
+    @objc func movePushFourViews() {
+        let productsVC = ProductsViewController()
+        let productVC = ProductViewController()
+        let productAppleVC = ProductAppleViewController()
+        let productAppleGreenVC = ProductAppleGreenViewController()
         
-//        navigationController?.pushViewController(productsVC, animated: true)
-//
-//        // Second transition
-//        DispatchQueue.main.async {
-//            self.navigationController?.pushViewController(productVC, animated: true)
-//        }
-
+        productsVC.hidesBottomBarWhenPushed = true
+        navigationController?.setViewControllers([self, productsVC, productVC, productAppleVC, productAppleGreenVC], animated: true)
     }
 }
