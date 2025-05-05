@@ -10,15 +10,13 @@ class ProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemPink.withAlphaComponent(0.8)
+        view.backgroundColor = .orange
         view.addSubview(uiLabel)
         setupUI()
         
         if isPresentedModally {
             setupCloseButton()
         }
-        
-        addBackButtonIfNeeded()
     }
     
     private func setupCloseButton() {

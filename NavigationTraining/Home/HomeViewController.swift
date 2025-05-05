@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemMint.withAlphaComponent(0.1)
+        view.backgroundColor = .systemMint
         view.addSubview(modalFullScreenButton)
         view.addSubview(modalPageSheetButton)
         view.addSubview(modalFormSheetButton)
@@ -24,16 +24,6 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController {
-    private func createUIButton(_ title: String) -> UIButton {
-        let uiButton = UIButton()
-        uiButton.configuration = .filled()
-        uiButton.configuration?.title = title
-        uiButton.configuration?.baseForegroundColor = .white
-        uiButton.configuration?.baseBackgroundColor = .black
-        return uiButton
-    }
-    
-    
     private func setupUI() {
         modalFullScreenButton.translatesAutoresizingMaskIntoConstraints = false
         modalPageSheetButton.translatesAutoresizingMaskIntoConstraints = false

@@ -1,16 +1,16 @@
 import UIKit
 
-class ProductViewController: UIViewController {
+class ProductAppleViewController: UIViewController, AppleProtocol {
     private let uiLabel: UILabel = {
         let label = UILabel()
-        label.text = "Product View"
+        label.text = "Product Apple View"
         label.textColor = .black
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .systemMint
         view.addSubview(uiLabel)
         setupUI()
     }
